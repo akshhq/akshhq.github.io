@@ -79,10 +79,10 @@ section+section{border-top:.5px solid var(--border)}
 .proj-desc{font-size:.78rem;color:var(--muted);line-height:1.72;margin-bottom:1.1rem}
 .proj-tags{display:flex;gap:.4rem;flex-wrap:wrap}
 .proj-tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);border:.5px solid var(--border);padding:.2rem .55rem;border-radius:2px}
-.proj-link{position:absolute;top:1.5rem;right:1.5rem;font-size:.75rem;color:var(--dim);text-decoration:none;transition:color .2s}
+.proj-link{position:absolute;top:1.5rem;right:1.5rem;font-size:.75rem;color:var(--dim);text-decoration:none;z-index: 1;transition:color .2s}
 .proj-link:hover{color:var(--gold)}
 .proj-actions{display: flex;gap: 0.8rem;margin-top: 1rem;}
-.proj-actions a {font-size: 0.65rem;letter-spacing: 0.12em;text-transform: uppercase;color: var(--muted);text-decoration: none;border: 0.5px solid var(--border);padding: 0.3rem 0.7rem;border-radius: 2px;transition: all 0.2s ease;}
+.proj-actions a {font-size: 0.65rem;letter-spacing: 0.12em;text-transform: uppercase;color: var(--muted);text-decoration: none;border: 0.5px solid var(--border);padding: 0.3rem 0.7rem;border-radius: 2px;position: relative;z-index: 2;transition: all 0.2s ease;}
 .proj-actions a:hover {color: var(--gold);border-color: var(--gold);}
 
 /* ── EDUCATION ── */
@@ -138,7 +138,7 @@ footer p{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:va
     <div class="hero-grid"></div>
     <div class="hero-kicker">Computer Science · Delhi University</div>
     <h1 class="hero-h1">Building systems that <em>solve</em> real problems.</h1>
-    <p class="hero-tagline">CS student, video editor, and digital creator. I blend technology and storytelling to build impactful digital experiences — from films to full-stack projects.</p>
+    <p class="hero-tagline">CS student focused on backend systems, real-time applications, and building scalable software solutions.</p>
     <div class="hero-links">
         <a class="hero-link" href="#projects">View My Work</a>
         <a class="hero-link" href="https://github.com/akshhq" target="_blank">github.com/akshhq</a>
@@ -153,10 +153,9 @@ footer p{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:va
     <div class="about-body">
       <h2 class="sec-h2">Code, <em>systems</em>,<br>and real solutions.</h2>
       <p>
-I'm a Computer Science undergraduate at Delhi University, working at the intersection of technology and storytelling.
-Alongside building software systems and backend applications, I actively create visual content - alongside building software systems and backend applications.
-
-I'm currently developing projects in both tech and media, aiming to build impactful digital experiences that are both functional and engaging.
+I'm a Computer Science undergraduate at Delhi University, focused on building efficient software systems and backend applications.
+I work with technologies like Python, C++, and FastAPI to develop scalable and practical solutions, and I enjoy solving real-world problems through code.
+Currently, I'm exploring projects across backend systems, desktop applications, and web development.
 </p>
       <div class="skills-grid">
         <div class="skill-chip"><strong>Languages</strong>C++, Python</div>
@@ -258,29 +257,29 @@ I'm currently developing projects in both tech and media, aiming to build impact
     </div>
 
     <!-- PROJECT 3 -->
-<div class="proj-card reveal">
-  <a class="proj-link" href="https://akshhq.github.io/tryst/" target="_blank">View →</a>
+    <div class="proj-card reveal">
+    <a class="proj-link" href="https://akshhq.github.io/tryst/" target="_blank">View →</a>
 
-  <div class="proj-num">03</div>
-  <div class="proj-title">Tryst - College Fest Website</div>
-  <div class="proj-desc">
-    Developed and deployed a responsive college fest website with event showcases, artist highlights, and structured navigation. Focused on clean UI, performance, and cross-device compatibility.
-  </div>
+    <div class="proj-num">03</div>
+    <div class="proj-title">Tryst - College Fest Website</div>
+    <div class="proj-desc">
+        Developed and deployed a responsive college fest website with event showcases, artist highlights, and structured navigation. Focused on clean UI, performance, and cross-device compatibility.
+    </div>
 
-  <div class="proj-tags">
-    <span class="proj-tag">HTML</span>
-    <span class="proj-tag">CSS</span>
-    <span class="proj-tag">JavaScript</span>
-    <span class="proj-tag">UI/UX</span>
-  </div>
+    <div class="proj-tags">
+        <span class="proj-tag">HTML</span>
+        <span class="proj-tag">CSS</span>
+        <span class="proj-tag">JavaScript</span>
+        <span class="proj-tag">UI/UX</span>
+    </div>
 
-  <div class="proj-actions">
-    <a href="https://github.com/akshhq/tryst" target="_blank">Code</a>
-    <a href="https://akshhq.github.io/tryst/" target="_blank">Live</a>
-  </div>
-</div>
-    
-    </section>
+    <div class="proj-actions">
+        <a href="https://github.com/akshhq/tryst" target="_blank">Code</a>
+        <a href="https://akshhq.github.io/tryst/" target="_blank">Live</a>
+    </div>
+    </div> 
+   </div>
+   </section>
   <!-- EDUCATION -->
   <section id="education">
     <div class="sec-label">Education</div>
