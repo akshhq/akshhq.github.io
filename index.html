@@ -81,6 +81,9 @@ section+section{border-top:.5px solid var(--border)}
 .proj-tag{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dim);border:.5px solid var(--border);padding:.2rem .55rem;border-radius:2px}
 .proj-link{position:absolute;top:1.5rem;right:1.5rem;font-size:.75rem;color:var(--dim);text-decoration:none;transition:color .2s}
 .proj-link:hover{color:var(--gold)}
+.proj-actions{display: flex;gap: 0.8rem;margin-top: 1rem;}
+.proj-actions a {font-size: 0.65rem;letter-spacing: 0.12em;text-transform: uppercase;color: var(--muted);text-decoration: none;border: 0.5px solid var(--border);padding: 0.3rem 0.7rem;border-radius: 2px;transition: all 0.2s ease;}
+.proj-actions a:hover {color: var(--gold);border-color: var(--gold);}
 
 /* ── EDUCATION ── */
 .edu-list{display:flex;flex-direction:column;gap:1.5rem}
@@ -134,12 +137,13 @@ footer p{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:va
     <div class="hero-glow"></div>
     <div class="hero-grid"></div>
     <div class="hero-kicker">Computer Science · Delhi University</div>
-    <h1 class="hero-h1">Building systems<br>that <em>actually</em> work.</h1>
-    <p class="hero-tagline">CS undergraduate specialising in real-time systems, backend development, and desktop applications. I turn problems into working software.</p>
+    <h1 class="hero-h1">Building systems that <em>solve</em> real problems.</h1>
+    <p class="hero-tagline">CS student, video editor, and digital creator. I blend technology and storytelling to build impactful digital experiences — from films to full-stack projects.</p>
     <div class="hero-links">
-      <a class="hero-link" href="https://github.com/akshhq" target="_blank">github.com/akshhq</a>
-      <a class="hero-link" href="/cdn-cgi/l/email-protection#f29399819a99859d809981b2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="aecfc5ddc6c5d9c1dcc5ddeec9c3cfc7c280cdc1c3">[email&#160;protected]</span></a>
-      <a class="hero-link" href="tel:+919811252080">+91 98112 52080</a>
+        <a class="hero-link" href="#projects">View My Work</a>
+        <a class="hero-link" href="https://github.com/akshhq" target="_blank">github.com/akshhq</a>
+        <a class="hero-link" href="mailto:akshkworks@gmail.com"><span class="__cf_email__" data-cfemail="aecfc5ddc6c5d9c1dcc5ddeec9c3cfc7c280cdc1c3">akshkworks@gmail.com</span></a>
+        <a class="hero-link" href="tel:+919811252080">+91 98112 52080</a>
     </div>
   </div>
 
@@ -148,11 +152,17 @@ footer p{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:va
     <div class="sec-label">About</div>
     <div class="about-body">
       <h2 class="sec-h2">Code, <em>systems</em>,<br>and real solutions.</h2>
-      <p>Computer Science undergraduate at Delhi University with experience building real-time systems and desktop applications. Skilled in Python, C++, and backend development using FastAPI and WebSockets. I'm drawn to problems that need scalable, thoughtful engineering — not just quick fixes.</p>
+      <p>
+I'm a Computer Science undergraduate at Delhi University, working at the intersection of technology and storytelling.
+Alongside building software systems and backend applications, I actively create visual content - alongside building software systems and backend applications.
+
+I'm currently developing projects in both tech and media, aiming to build impactful digital experiences that are both functional and engaging.
+</p>
       <div class="skills-grid">
         <div class="skill-chip"><strong>Languages</strong>C++, Python</div>
         <div class="skill-chip"><strong>Web</strong>HTML, CSS</div>
         <div class="skill-chip"><strong>Frameworks</strong>FastAPI, Git</div>
+        <div class="skill-chip"><strong>Creative</strong>Video Editing, Storytelling, Direction</div>
         <div class="skill-chip"><strong>Concepts</strong>Data Structures, Real-time Systems</div>
         <div class="skill-chip"><strong>Other</strong>WebSockets, SQLite, Leaflet.js</div>
         <div class="skill-chip"><strong>Tools</strong>PyInstaller, Inno Setup, Tkinter</div>
@@ -196,50 +206,81 @@ footer p{font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:va
 
   <!-- PROJECTS -->
   <section id="projects">
-    <div class="sec-label">Projects</div>
-    <h2 class="sec-h2">Things I've <em>built</em>.</h2>
-    <div class="projects-grid">
+  <div class="sec-label">Projects</div>
+  <h2 class="sec-h2">Tech I've <em>built</em>.</h2>
 
-      <div class="proj-card reveal">
-        <div class="proj-num">01</div>
-        <div class="proj-title">ResQNet</div>
-        <div class="proj-desc">Context-aware emergency response system with real-time monitoring, risk classification, and alert escalation. Built a full pipeline from device to dashboard.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">FastAPI</span>
-          <span class="proj-tag">WebSockets</span>
-          <span class="proj-tag">Leaflet.js</span>
-          <span class="proj-tag">GPS</span>
-        </div>
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="proj-card reveal">
+      <a class="proj-link" href="https://github.com/akshhq/resqnet" target="_blank">View →</a>
+
+      <div class="proj-num">01</div>
+      <div class="proj-title">ResQNet</div>
+      <div class="proj-desc">
+        Built and designed a context-aware emergency response system with real-time monitoring, risk classification, and alert escalation. End-to-end pipeline from device to dashboard.
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-num">02</div>
-        <div class="proj-title">ActivityProfiler Desktop</div>
-        <div class="proj-desc">Privacy-first Windows desktop app to track application and website usage entirely locally. Includes analytics dashboard, CSV export, and auto-start via Windows Registry.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">Python</span>
-          <span class="proj-tag">Tkinter</span>
-          <span class="proj-tag">SQLite</span>
-          <span class="proj-tag">PyInstaller</span>
-          <span class="proj-tag">Inno Setup</span>
-        </div>
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">FastAPI</span>
+        <span class="proj-tag">WebSockets</span>
+        <span class="proj-tag">Leaflet.js</span>
+        <span class="proj-tag">GPS</span>
       </div>
 
-      <div class="proj-card reveal">
-        <div class="proj-num">03</div>
-        <div class="proj-title">Blitz Farewell '26</div>
-        <div class="proj-desc">Designed and built a farewell tribute website for the society's outgoing batch — featuring senior profiles, junior notes, and a media vault. Fully deployed and live.</div>
-        <div class="proj-tags">
-          <span class="proj-tag">HTML</span>
-          <span class="proj-tag">CSS</span>
-          <span class="proj-tag">JavaScript</span>
-        </div>
+      <div class="proj-actions">
+        <a href="https://github.com/akshhq/resqnet" target="_blank">Code</a>
       </div>
-
     </div>
-  </section>
 
+    <!-- PROJECT 2 -->
+    <div class="proj-card reveal">
+      <a class="proj-link" href="https://github.com/akshhq/ActivityProfiler-Desktop" target="_blank">View →</a>
+
+      <div class="proj-num">02</div>
+      <div class="proj-title">ActivityProfiler Desktop</div>
+      <div class="proj-desc">
+        Built a privacy-first Windows desktop app to track application and website usage locally. Includes analytics dashboard, CSV export, and auto-start via Windows Registry.
+      </div>
+
+      <div class="proj-tags">
+        <span class="proj-tag">Python</span>
+        <span class="proj-tag">Tkinter</span>
+        <span class="proj-tag">SQLite</span>
+        <span class="proj-tag">PyInstaller</span>
+        <span class="proj-tag">Inno Setup</span>
+      </div>
+
+      <div class="proj-actions">
+        <a href="https://github.com/akshhq/ActivityProfiler-Desktop" target="_blank">Code</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+<div class="proj-card reveal">
+  <a class="proj-link" href="https://akshhq.github.io/tryst/" target="_blank">View →</a>
+
+  <div class="proj-num">03</div>
+  <div class="proj-title">Tryst - College Fest Website</div>
+  <div class="proj-desc">
+    Developed and deployed a responsive college fest website with event showcases, artist highlights, and structured navigation. Focused on clean UI, performance, and cross-device compatibility.
+  </div>
+
+  <div class="proj-tags">
+    <span class="proj-tag">HTML</span>
+    <span class="proj-tag">CSS</span>
+    <span class="proj-tag">JavaScript</span>
+    <span class="proj-tag">UI/UX</span>
+  </div>
+
+  <div class="proj-actions">
+    <a href="https://github.com/akshhq/tryst" target="_blank">Code</a>
+    <a href="https://akshhq.github.io/tryst/" target="_blank">Live</a>
+  </div>
+</div>
+    
+    </section>
   <!-- EDUCATION -->
   <section id="education">
     <div class="sec-label">Education</div>
