@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aksh Kumar — Video Editor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---- Supplemental styles for elements not covered by the base theme ---- */
+
+  /* Hero signature visual: an animated edit timeline in place of a photo */
+  .hero-timeline {
+    width: 100%; aspect-ratio: 4/5; border-radius: 24px; border: 1px solid var(--glass-border);
+    background: #0c0c0c; box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    display: flex; flex-direction: column; justify-content: center; padding: 2rem 1.5rem; gap: 1.4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-timeline::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,180,0,0.08), transparent 60%);
+  }
+  .tl-row { display: flex; align-items: center; gap: 0.6rem; z-index: 1; }
+  .tl-label { width: 26px; font-size: 0.65rem; color: var(--text-muted); font-family: var(--sans); letter-spacing: 1px; flex-shrink: 0; }
+  .tl-track { flex: 1; height: 34px; background: rgba(255,255,255,0.03); border-radius: 6px; position: relative; overflow: hidden; border: 1px solid var(--glass-border); }
+  .tl-clip { position: absolute; top: 3px; bottom: 3px; border-radius: 4px; background: linear-gradient(135deg, var(--accent), #b8790000); opacity: 0.85; }
+  .tl-clip.dim { background: rgba(255,255,255,0.08); }
+  .tl-wave { position: absolute; top: 3px; bottom: 3px; border-radius: 4px; background: rgba(255,180,0,0.12); border: 1px solid rgba(255,180,0,0.3); }
+  .tl-playhead { position: absolute; top: -4px; bottom: -4px; width: 2px; background: #fff; box-shadow: 0 0 8px #fff; z-index: 2; animation: scrub 5s linear infinite; }
+  @keyframes scrub { 0% { left: 4%; } 50% { left: 92%; } 100% { left: 4%; } }
+  .hero-timecode { font-family: var(--sans); font-size: 0.75rem; letter-spacing: 2px; color: var(--accent); z-index: 1; }
+
+  /* Project thumbnails (no stock photography — abstract gradient + play glyph per reel) */
+  .proj-thumb {
+    width: 100%; aspect-ratio: 16/9; border-radius: 14px; margin-bottom: 1.5rem;
+    position: relative; overflow: hidden; border: 1px solid var(--glass-border); z-index: 1;
+  }
+  .proj-thumb .grad { position: absolute; inset: 0; }
+  .proj-thumb .grain { position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,0.05) 0px, transparent 2px, transparent 4px); mix-blend-mode: overlay; }
+  .proj-thumb .play {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 54px; height: 54px; border-radius: 50%; background: rgba(17,17,17,0.55);
+    border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(6px); transition: all 0.3s ease;
+  }
+  .proj-thumb .play svg { width: 18px; height: 18px; fill: #fff; margin-left: 3px; }
+  .proj-card:hover .proj-thumb .play { background: var(--accent); border-color: var(--accent); transform: translate(-50%, -50%) scale(1.1); }
+  .proj-card:hover .proj-thumb .play svg { fill: #111; }
+  .proj-duration { position: absolute; bottom: 8px; right: 10px; font-family: var(--sans); font-size: 0.7rem; letter-spacing: 1px; color: #fff; background: rgba(0,0,0,0.5); padding: 0.2rem 0.6rem; border-radius: 4px; }
+
+  .g1 .grad { background: linear-gradient(135deg, #3a2a00, #1a1a1a); }
+  .g2 .grad { background: linear-gradient(135deg, #241a35, #1a1a1a); }
+  .g3 .grad { background: linear-gradient(135deg, #0f2b2e, #1a1a1a); }
+  .g4 .grad { background: linear-gradient(135deg, #2e1414, #1a1a1a); }
+  .g5 .grad { background: linear-gradient(135deg, #142a17, #1a1a1a); }
+  .g6 .grad { background: linear-gradient(135deg, #2a1f0a, #1a1a1a); }
+
+  /* Skill tag interactive state */
+  .skill-tag { cursor: pointer; user-select: none; }
+  .skill-tag.active { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+  /* Social / contact icons rendered as inline SVG */
+  .social-link svg, .contact-icon svg, .nav-btn svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+
+  /* Video modal body */
+  .modal-body video { width: 100%; height: 100%; display: block; background: #000; }
+
+  ::selection { background: var(--accent); color: #111; }
+  a { color: inherit; }
+  ul { list-style: none; }
+
+  /* ---- Mobile refinements ---- */
+  @media (max-width: 768px) {
+    /* Hero: show the intro text first, the timeline graphic second */
+    .hero-content { flex-direction: column; }
+    .hero-text { order: 1; width: 100%; }
+    .hero-img-box { order: 2; width: min(80vw, 320px); margin: 0.5rem auto 0; }
+    .hero-timeline { aspect-ratio: 5/4; padding: 1.3rem 1.1rem; gap: 1rem; }
+    .tl-track { height: 26px; }
+    .hero-timecode { font-size: 0.68rem; }
+
+    /* Selected Work: two compact cards per row */
+    .projects-grid { grid-template-columns: repeat(2, 1fr); gap: 0.9rem; }
+    .proj-card { padding: 1rem; border-radius: 16px; }
+    .proj-num { font-size: 1.4rem; top: 0.6rem; right: 0.9rem; }
+    .proj-thumb { margin-bottom: 0.8rem; border-radius: 10px; }
+    .proj-thumb .play { width: 32px; height: 32px; }
+    .proj-thumb .play svg { width: 11px; height: 11px; margin-left: 2px; }
+    .proj-duration { font-size: 0.55rem; padding: 0.15rem 0.4rem; bottom: 5px; right: 6px; }
+    .proj-title { font-size: 0.9rem; margin-bottom: 0.55rem; line-height: 1.3; }
+    .proj-desc-list { gap: 0.35rem; margin-bottom: 0.9rem; }
+    .proj-desc-list li { font-size: 0.66rem; line-height: 1.4; padding-left: 0.9rem; }
+    .proj-tags { gap: 0.3rem; margin-bottom: 0.9rem; }
+    .proj-tag { font-size: 0.52rem; padding: 0.2rem 0.45rem; }
+    .proj-links a { font-size: 0.62rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="floating-nav">
+  <a href="#home" class="nav-btn" data-tooltip="Home"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9"/></svg></a>
+  <a href="#about" class="nav-btn" data-tooltip="About"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c0-3.5 3.1-6 7-6s7 2.5 7 6"/></svg></a>
+  <a href="#work" class="nav-btn" data-tooltip="Reels"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="14" height="12" rx="2"/><path d="M17 9.5 21 7v10l-4-2.5z"/></svg></a>
+  <a href="#contact" class="nav-btn" data-tooltip="Contact"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg></a>
+</nav>
+
+<div id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-img-box reveal">
+        <div class="hero-bg-accent"></div>
+        <div class="hero-timeline">
+          <div class="tl-row">
+            <span class="tl-label">V2</span>
+            <div class="tl-track">
+              <div class="tl-clip" style="left:4%; width:28%;"></div>
+              <div class="tl-clip dim" style="left:34%; width:18%;"></div>
+              <div class="tl-clip" style="left:55%; width:38%;"></div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-label">V1</span>
+            <div class="tl-track">
+              <div class="tl-clip dim" style="left:4%; width:44%;"></div>
+              <div class="tl-clip" style="left:50%; width:22%;"></div>
+              <div class="tl-clip dim" style="left:75%; width:18%;"></div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-label">A1</span>
+            <div class="tl-track">
+              <div class="tl-wave" style="left:4%; width:88%;"></div>
+            </div>
+          </div>
+          <div class="tl-playhead"></div>
+          <div class="hero-timecode">00:00:14:22</div>
+        </div>
+      </div>
+      <div class="hero-text reveal">
+        <div class="kicker"><span class="line"></span> Video Editor</div>
+        <h1 class="hero-h1">Cut with intent.<br>Edit with <span>purpose.</span></h1>
+        <p class="hero-tagline">I'm Aksh Kumar — I head the video editing department at an NGO and volunteer as an editor with NSS, cutting campaigns and stories that need to land, not just look good. Premiere Pro and After Effects, timeline after timeline.</p>
+        <div style="display:flex; align-items:center; gap:2rem; flex-wrap:wrap;">
+          <a href="#work" class="btn-primary">View Reels <span>&#8594;</span></a>
+          <div class="hero-socials">
+            <a href="https://www.linkedin.com/in/kumaraksh" target="_blank" rel="noopener" class="social-link" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7.5" y1="10" x2="7.5" y2="17"/><circle cx="7.5" cy="6.8" r="1"/><path d="M11 17v-4.5c0-1.5 1-2.5 2.4-2.5 1.3 0 2.1 1 2.1 2.6V17"/></svg></a>
+            <a href="mailto:akshkworks@gmail.com" class="social-link" aria-label="Email"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="sec-title-container reveal">
+      <p class="sec-bg-text">Editor</p>
+      <h2 class="sec-title">About <span>Me</span></h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I'm self-taught — no film school, just Premiere Pro, After Effects, and a lot of hands-on practice. I picked up editing by volunteering, and that's still where most of my work happens today.</p>
+        <p>I head the video editing department at an NGO, leading how our campaign and outreach videos get cut and put together, and I edit as a volunteer for NSS, turning raw phone and DSLR footage from community service drives into recap videos people actually want to watch.</p>
+        <p>Click a skill tag below to see which reels lean on it — the projects section will highlight the matching work.</p>
+      </div>
+      <div class="skills-container reveal">
+        <div class="skill-box">
+          <h4>Editing &amp; Post</h4>
+          <div class="skill-tags">
+            <span class="skill-tag" data-skill="premiere">Premiere Pro</span>
+            <span class="skill-tag" data-skill="ae">After Effects</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h4>Craft</h4>
+          <div class="skill-tags">
+            <span class="skill-tag" data-skill="color">Color Grading</span>
+            <span class="skill-tag" data-skill="sound">Sound Design</span>
+            <span class="skill-tag" data-skill="motion">Motion Graphics</span>
+            <span class="skill-tag" data-skill="story">Story Structure</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h4>Genres</h4>
+          <div class="skill-tags">
+            <span class="skill-tag" data-skill="narrative">Narrative</span>
+            <span class="skill-tag" data-skill="brand">Brand Film</span>
+            <span class="skill-tag" data-skill="music">Music Video</span>
+            <span class="skill-tag" data-skill="doc">Documentary</span>
+          </div>
+        </div>
+        <div class="skill-box">
+          <h4>Delivery</h4>
+          <div class="skill-tags">
+            <span class="skill-tag" data-skill="broadcast">Broadcast Specs</span>
+            <span class="skill-tag" data-skill="social">Social Cutdowns</span>
+            <span class="skill-tag" data-skill="hdr">HDR Mastering</span>
+            <span class="skill-tag" data-skill="captions">Captioning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE & EDUCATION -->
+  <section id="experience">
+    <div class="sec-title-container reveal">
+      <p class="sec-bg-text">History</p>
+      <h2 class="sec-title">Where I've <span>Worked</span></h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-col reveal">
+        <h3>Experience</h3>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Present</div>
+          <div class="timeline-title">Head of Video Editing Department</div>
+          <div class="timeline-org">NGO <span style="color:var(--text-muted); font-weight:400;">— Volunteer Leadership</span></div>
+          <p class="timeline-desc">Lead the video editing side of the organization's campaigns and outreach content, from raw footage to final cut in Premiere Pro and After Effects.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Present</div>
+          <div class="timeline-title">Video Editing Volunteer</div>
+          <div class="timeline-org">NSS <span style="color:var(--text-muted); font-weight:400;">— National Service Scheme</span></div>
+          <p class="timeline-desc">Edit recap and campaign videos for community service drives and outreach events, working from raw phone and DSLR footage.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Present</div>
+          <div class="timeline-title">Freelance Video Editor</div>
+          <div class="timeline-org">Conceptual Learning <span style="color:var(--text-muted); font-weight:400;">— Educational Brand</span></div>
+          <p class="timeline-desc">Cut explainer and lecture-style content for an educational brand, simplifying dense concepts into clear, well-paced videos for students.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Present</div>
+          <div class="timeline-title">Freelance Video Editor</div>
+          <div class="timeline-org">Flickd <span style="color:var(--text-muted); font-weight:400;">— Tech-Fashion Startup</span></div>
+          <p class="timeline-desc">Edit product drops, app walkthroughs, and social-first content for a tech-fashion startup, keeping pace with a fast weekly content cycle across Reels and Shorts.</p>
+        </div>
+      </div>
+      <div class="timeline-col reveal">
+        <h3>Learning Path</h3>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Ongoing</div>
+          <div class="timeline-title">Self-Taught Editor</div>
+          <div class="timeline-org">No Formal Editing Education</div>
+          <p class="timeline-desc">Learned Premiere Pro and After Effects on my own — no film school, just tutorials, trial and error, and real projects to practice on.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-icon"></div>
+          <div class="timeline-date">Ongoing</div>
+          <div class="timeline-title">Learning by Doing</div>
+          <div class="timeline-org">NGO &amp; NSS Volunteer Work</div>
+          <p class="timeline-desc">Most of what I know comes from leading and volunteering on real campaigns — figuring out pacing, structure, and delivery under real deadlines.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS / REELS -->
+  <section id="work">
+    <div class="sec-title-container reveal">
+      <p class="sec-bg-text">Reels</p>
+      <h2 class="sec-title">Selected <span>Work</span></h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="proj-card glass-card reveal" data-skills="narrative,story,color,premiere">
+        <span class="proj-num">01</span>
+        <div class="proj-thumb g1">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">3:42</span>
+        </div>
+        <h3 class="proj-title">Wayfarer — Short Film</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Editor &amp; Colorist on a 12-minute drama shot over 4 days.</li>
+          <li><b>Focus:</b> Restructured the third act in the edit to sharpen the reveal.</li>
+          <li><b>Grade:</b> Muted teal-and-amber palette to separate memory scenes from present day.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Narrative</span><span class="proj-tag">Color</span><span class="proj-tag">Premiere Pro</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="bbb">Watch Reel</a></div>
+      </div>
+
+      <div class="proj-card glass-card reveal" data-skills="music,sound,premiere,ae">
+        <span class="proj-num">02</span>
+        <div class="proj-thumb g2">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">2:58</span>
+        </div>
+        <h3 class="proj-title">Static Bloom — Music Video</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Editor for an indie band's lead single, cut to a shifting time signature.</li>
+          <li><b>Focus:</b> Beat-matched cuts and kinetic type built in After Effects.</li>
+          <li><b>Turnaround:</b> Delivered final in 5 days for a festival premiere.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Music Video</span><span class="proj-tag">Motion Graphics</span><span class="proj-tag">Premiere Pro</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="sintel">Watch Reel</a></div>
+      </div>
+
+      <div class="proj-card glass-card reveal" data-skills="doc,sound,premiere,captions">
+        <span class="proj-num">03</span>
+        <div class="proj-thumb g3">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">8:15</span>
+        </div>
+        <h3 class="proj-title">Concrete Roots — Documentary</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Editor on a mid-length doc about an urban community garden.</li>
+          <li><b>Focus:</b> Wove three interview timelines into a single throughline.</li>
+          <li><b>Sound:</b> Full dialogue clean-up and ambient layering in the mix.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Documentary</span><span class="proj-tag">Sound Design</span><span class="proj-tag">Premiere Pro</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="elephants">Watch Reel</a></div>
+      </div>
+
+      <div class="proj-card glass-card reveal" data-skills="brand,social,color,hdr">
+        <span class="proj-num">04</span>
+        <div class="proj-thumb g4">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">1:20</span>
+        </div>
+        <h3 class="proj-title">Ferro Coffee — Brand Film</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Editor &amp; Colorist for a specialty roaster's flagship spot.</li>
+          <li><b>Focus:</b> Product-forward cutting with a warm, high-contrast HDR grade.</li>
+          <li><b>Delivery:</b> Master plus five vertical cutdowns for social.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Brand Film</span><span class="proj-tag">HDR</span><span class="proj-tag">Social Cutdowns</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="tears">Watch Reel</a></div>
+      </div>
+
+      <div class="proj-card glass-card reveal" data-skills="narrative,ae,motion,broadcast">
+        <span class="proj-num">05</span>
+        <div class="proj-thumb g5">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">4:30</span>
+        </div>
+        <h3 class="proj-title">Nightshift — Title Sequence</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Edited and designed the opening titles for a streaming pilot.</li>
+          <li><b>Focus:</b> Motion-graphics-led sequence built to broadcast delivery spec.</li>
+          <li><b>Note:</b> Picked up for the show's full six-episode order.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Narrative</span><span class="proj-tag">Motion Graphics</span><span class="proj-tag">After Effects</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="bbb">Watch Reel</a></div>
+      </div>
+
+      <div class="proj-card glass-card reveal" data-skills="story,premiere,captions,social">
+        <span class="proj-num">06</span>
+        <div class="proj-thumb g6">
+          <div class="grad"></div><div class="grain"></div>
+          <div class="play"><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></div>
+          <span class="proj-duration">5:04</span>
+        </div>
+        <h3 class="proj-title">Field Notes — Web Series Pilot</h3>
+        <ul class="proj-desc-list">
+          <li><b>Role:</b> Editor for an unscripted travel pilot, cut from 40+ hours of footage.</li>
+          <li><b>Focus:</b> Built the episode's story spine in a paper edit before cutting.</li>
+          <li><b>Delivery:</b> Captioned master plus a 60-second teaser cut.</li>
+        </ul>
+        <div class="proj-tags"><span class="proj-tag">Story Structure</span><span class="proj-tag">Captioning</span><span class="proj-tag">Premiere Pro</span></div>
+        <div class="proj-links"><a href="#" class="watch-btn" data-video="sintel">Watch Reel</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="sec-title-container reveal">
+      <p class="sec-bg-text">Contact</p>
+      <h2 class="sec-title">Let's <span>Talk</span></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="glass-card reveal">
+        <div class="contact-info">
+          <h3 class="contact-heading">Have a cut that needs a <span>second pair of eyes?</span></h3>
+          <p class="contact-lead">Whether it's a full edit from raw footage or a grade pass on a locked timeline, I'd like to hear about it.</p>
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 6.5 8 6 8-6"/></svg></div>
+              <div class="contact-text"><h4>Email</h4><a href="mailto:akshkworks@gmail.com">akshkworks@gmail.com</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24"><path d="M4 5h4l1.5 4.5L7 11a12 12 0 0 0 6 6l1.5-2.5L19 16v4c0 1-1 1.5-2 1.4C10 20.6 3.4 14 3 6.6 3 5.7 3.5 5 4 5Z"/></svg></div>
+              <div class="contact-text"><h4>Phone</h4><a href="tel:+919811252080">+91 98112 52080</a></div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="7.5" y1="10" x2="7.5" y2="17"/><circle cx="7.5" cy="6.8" r="1"/><path d="M11 17v-4.5c0-1.5 1-2.5 2.4-2.5 1.3 0 2.1 1 2.1 2.6V17"/></svg></div>
+              <div class="contact-text"><h4>LinkedIn</h4><a href="https://www.linkedin.com/in/kumaraksh" target="_blank" rel="noopener">@kumaraksh</a></div>
+            </div>
+          </div>
+          <div class="contact-ctas">
+            <a href="mailto:akshkworks@gmail.com" class="btn-secondary">Email Me</a>
+            <a href="https://www.linkedin.com/in/kumaraksh" target="_blank" rel="noopener" class="btn-secondary">Connect on LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Aksh Kumar — Video Editor</p>
+</footer>
+
+<!-- VIDEO MODAL -->
+<div class="modal" id="videoModal">
+  <div class="modal-content glass-card">
+    <div class="modal-header">
+      <h3 id="modalTitle">Reel</h3>
+      <div class="modal-actions">
+        <a href="#" id="modalDownload" class="btn-download" download>&#8595; Download</a>
+        <button class="close-btn" id="modalClose">&times;</button>
+      </div>
+    </div>
+    <div class="modal-body">
+      <video id="modalVideo" controls playsinline></video>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  // ---- Sample reel sources (CC-licensed Blender Foundation open movies, used as placeholder footage) ----
+  const REELS = {
+    bbb:       { title: "Wayfarer — Short Film",         src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" },
+    sintel:    { title: "Static Bloom — Music Video",    src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4" },
+    elephants: { title: "Concrete Roots — Documentary",  src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4" },
+    tears:     { title: "Ferro Coffee — Brand Film",     src: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4" }
+  };
+
+  const modal = document.getElementById('videoModal');
+  const modalVideo = document.getElementById('modalVideo');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalDownload = document.getElementById('modalDownload');
+
+  document.querySelectorAll('.watch-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      const key = btn.dataset.video;
+      const reel = REELS[key] || REELS.bbb;
+      modalTitle.textContent = reel.title;
+      modalVideo.src = reel.src;
+      modalDownload.href = reel.src;
+      modal.classList.add('show');
+      modalVideo.play().catch(()=>{});
+    });
+  });
+
+  function closeModal(){
+    modal.classList.remove('show');
+    modalVideo.pause();
+    modalVideo.removeAttribute('src');
+    modalVideo.load();
+  }
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // ---- Scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ---- Glass card spotlight ----
+  document.querySelectorAll('.glass-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--mouse-y', (e.clientY - r.top) + 'px');
+    });
+  });
+
+  // ---- Active nav highlighting ----
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const sections = ['home','about','experience','work','contact'].map(id => document.getElementById(id)).filter(Boolean);
+  const navIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        navBtns.forEach(btn => btn.style.color = '');
+        const match = document.querySelector('.nav-btn[href="#' + id + '"]');
+        if (match) match.style.color = 'var(--accent)';
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(sec => navIO.observe(sec));
+
+  // ---- Skill tag <-> project highlighting ----
+  const skillTags = document.querySelectorAll('.skill-tag');
+  const projCards = document.querySelectorAll('.proj-card');
+  let activeSkill = null;
+
+  skillTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      const skill = tag.dataset.skill;
+      if (activeSkill === skill) {
+        activeSkill = null;
+        skillTags.forEach(t => t.classList.remove('active'));
+        projCards.forEach(c => c.classList.remove('highlighted','faded'));
+        return;
+      }
+      activeSkill = skill;
+      skillTags.forEach(t => t.classList.toggle('active', t.dataset.skill === skill));
+      projCards.forEach(card => {
+        const has = (card.dataset.skills || '').split(',').includes(skill);
+        card.classList.toggle('highlighted', has);
+        card.classList.toggle('faded', !has);
+      });
+      document.getElementById('work').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+</body>
+</html>
