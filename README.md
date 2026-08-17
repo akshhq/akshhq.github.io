@@ -1,4 +1,4 @@
-﻿<div align="center">
+<div align="center">
 
 # 👋 Hey, I'm Aksh Kumar
 
@@ -108,6 +108,21 @@ A **premium travel agency site evolving into a full travel management platform**
 
 ---
 
+### ☀️ Maurice Solar — Clean-Tech Energy Solutions *(In Progress)*
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![Status](https://img.shields.io/badge/Status-In_Development-orange?style=flat-square)
+
+Multi-page corporate & clean-tech engineering web portal for a Himachal Pradesh-based solar energy company (2,000+ rooftop solar water heater installations, 355+ on-grid solar systems, national vendor under PM Surya Ghar Muft Bijli Yojana).
+
+- ⚡ **Interactive Solar Savings Calculator:** Custom calculation engine estimating recommended solar capacity (kW), annual & 25-year financial savings, required roof area, and CO₂ offset with direct WhatsApp quote dispatch
+- 🔄 **Interactive System Visualizer:** Dynamic node-flow visualization demonstrating on-grid vs. off-grid solar energy distribution and net metering
+- 📐 **Full EPC & Product Suite:** Dedicated sections for turnkey EPC workflows, technical specifications for panels/inverters/water heaters/streetlights, and project case studies (Bhuttico 22 kWh, Himcapes Law College 55 kWh, 5 MW Solar Park)
+- 📱 **Clean-Tech UX:** Tabbed product filtering, responsive image lightbox, animated viewport metrics, and accessibility-first reduced-motion support
+
+---
+
 ### 🛡️ ResQNet — Emergency Response System
 [![Source](https://img.shields.io/badge/GitHub-resqnet-181717?style=flat-square&logo=github)](https://github.com/akshhq/resqnet)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -155,10 +170,10 @@ Official annual fest hub for Keshav Mahavidyalaya — designed and shipped solo 
 
 | Period | Role | Organisation |
 |--------|------|-------------|
+| Jan 2025 — Present | **President** | Blitz · Keshav Mahavidyalaya |
 | June 2026 — Dec 2026 | **Campus Mantri** (Official Campus Representative) | GeeksforGeeks × KMV, University of Delhi |
 | June 2026 — July 2026 | **Full Stack Development Intern** | Decode Labs (Govt-registered) |
 | May 2026 — Present | **Freelance Web Developer** | AkshHQ (Independent) |
-| Jan 2025 — Present | **Senior Executive – Tech & Design** | Blitz · Keshav Mahavidyalaya |
 | 2025 — 2026 | Social Media Sub-Head & Ground Volunteer | Voice of Youth, Delhi — NGO |
 | 2024 — 2026 | Joint Secretary & Field Volunteer | Project Sukh — NPO (Feed the Unfed) |
 | 2024 — 2026 | Treasurer | National Service Scheme (NSS) · KMV |
