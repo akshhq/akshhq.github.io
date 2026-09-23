@@ -51,7 +51,40 @@ Built with **pure HTML, CSS, and JavaScript** — no frameworks, no build steps.
 
 ## 💼 Selected Projects (AkshHQ)
 
-> Projects under **AkshHQ** — my independent freelance practice
+> Projects under **AkshHQ** — my independent freelance practice · See complete project showcase at **[aksh.is-a.dev/akshhq](https://aksh.is-a.dev/akshhq.html)**
+
+### 🌿 Himroots Wellness — High-Himalayan Sea Buckthorn Platform
+[![Instagram](https://img.shields.io/badge/Instagram-@himroots.wellness-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/himroots.wellness/)
+![React](https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=flat-square&logo=vite&logoColor=FFD62E)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=flat-square&logo=express&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat-square&logo=supabase&logoColor=white)
+![Razorpay](https://img.shields.io/badge/Razorpay-02042B?style=flat-square&logo=razorpay&logoColor=3395FF)
+
+Luxury, high-performance D2C e-commerce platform and botanical archive built for **Himroots Wellness**, celebrating wild-foraged Himalayan Sea Buckthorn (*Hippophae rhamnoides*) formulations.
+
+- 🌿 **Botanical Monograph Archive:** Dedicated 7-chapter illustrated research monograph (`/about-sea-buckthorn`) detailing high-altitude adaptations (12,000+ ft), ancient pegasus & historical lore, and Omega-7 bioactives.
+- ⚡ **Client-Side SPA Architecture:** React 19, TypeScript, Vite 8, React Router v7, and Tailwind CSS v4 design tokens.
+- 🎯 **Coordinated Brand Presence:** Single dynamic logo presentation using `IntersectionObserver` and Zustand to transition between hero emblem and sticky navbar without duplicate displays.
+- 🛒 **Persistent Commerce Flow:** Zustand cart with browser localStorage persistence, slide-over preview, checkout validation, and Indian postal pincode verification.
+- 🔒 **Secure Node.js + Express Backend:** Server-side price recalculation, Supabase PostgreSQL order persistence, PL/pgSQL order number generator (`HM-YYYYMMDD-XXXX`), and HMAC-SHA256 Razorpay payment verification.
+
+---
+
+### 🏥 Boat Link Medical Equipment — B2B Digital Catalogue
+[![Live](https://img.shields.io/badge/Live-boatlinkmed.com-FFB400?style=flat-square&logo=google-chrome&logoColor=black)](https://boatlinkmed.com/)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+
+B2B digital product catalogue built from scratch in 5 days for a **UAE medical equipment trading firm** (120+ products across 15 divisions).
+- Instant client-side division filters and text search without page reloads.
+- Interactive modal specifications with direct WhatsApp RFQ (Request For Quote) buttons.
+- Delivered end-to-end: brand identity, logo design, on-page SEO, domain DNS, and cloud deployment.
+
+---
 
 ### 🏠 Maurice Appliances — Official Website
 [![Live](https://img.shields.io/badge/Live-mauriceappliances.in-FFB400?style=flat-square&logo=apache&logoColor=black)](http://mauriceappliances.in/)

@@ -72,14 +72,21 @@ document.querySelectorAll('.glass-card').forEach(card => {
 
 // Interactive Skills Mapping
 const skillToProjectMap = {
-  'HTML5': ['Boat Link Medical Equipment Website'],
-  'CSS3': ['Boat Link Medical Equipment Website'],
-  'JavaScript': ['Boat Link Medical Equipment Website', 'College Fest Website'],
-  'Python': ['ActivityProfiler-Desktop'],
-  'Responsive UI': ['Boat Link Medical Equipment Website', 'College Fest Website'],
-  'Mobile-First': ['Boat Link Medical Equipment Website'],
-  'SEO Basics': ['Boat Link Medical Equipment Website'],
-  'Product UI': ['Boat Link Medical Equipment Website'],
+  'HTML5': ['Boat Link Medical Equipment Website', 'Maurice Solar — Clean-Tech Energy Solutions'],
+  'CSS3': ['Boat Link Medical Equipment Website', 'Maurice Solar — Clean-Tech Energy Solutions'],
+  'JavaScript': ['Boat Link Medical Equipment Website', 'College Fest Website', 'Guchhi — Wild-Foraged Himalayan Ecommerce', 'Maurice Solar — Clean-Tech Energy Solutions'],
+  'React': ['Himroots — High-Himalayan Sea Buckthorn Platform'],
+  'Node.js': ['Himroots — High-Himalayan Sea Buckthorn Platform', 'Guchhi — Wild-Foraged Himalayan Ecommerce', 'Brahmnmitra — Premium Travel Platform'],
+  'REST APIs': ['Himroots — High-Himalayan Sea Buckthorn Platform', 'Guchhi — Wild-Foraged Himalayan Ecommerce', 'ResQNet'],
+  'Python': ['ActivityProfiler-Desktop', 'ResQNet'],
+  'SQL': ['Guchhi — Wild-Foraged Himalayan Ecommerce', 'ActivityProfiler-Desktop'],
+  'MySQL': ['Guchhi — Wild-Foraged Himalayan Ecommerce'],
+  'Git': ['ActivityProfiler-Desktop', 'ResQNet', 'College Fest Website'],
+  'GitHub': ['ActivityProfiler-Desktop', 'ResQNet', 'College Fest Website'],
+  'Responsive UI': ['Himroots — High-Himalayan Sea Buckthorn Platform', 'Boat Link Medical Equipment Website', 'College Fest Website', 'Maurice Appliances — Official Website', 'Guchhi — Wild-Foraged Himalayan Ecommerce', 'Maurice Solar — Clean-Tech Energy Solutions'],
+  'Mobile-First': ['Himroots — High-Himalayan Sea Buckthorn Platform', 'Boat Link Medical Equipment Website', 'Maurice Appliances — Official Website', 'Guchhi — Wild-Foraged Himalayan Ecommerce'],
+  'SEO Basics': ['Boat Link Medical Equipment Website', 'Maurice Appliances — Official Website', 'Himroots — High-Himalayan Sea Buckthorn Platform'],
+  'Product UI': ['Himroots — High-Himalayan Sea Buckthorn Platform', 'Maurice Appliances — Official Website', 'Guchhi — Wild-Foraged Himalayan Ecommerce', 'Boat Link Medical Equipment Website'],
   'Logo Design': ['Boat Link Medical Equipment Website']
 };
 
