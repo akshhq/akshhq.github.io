@@ -53,8 +53,10 @@ Built with **pure HTML, CSS, and JavaScript** — no frameworks, no build steps.
 
 > Projects under **AkshHQ** — my independent freelance practice · See complete project showcase at **[aksh.is-a.dev/akshhq](https://aksh.is-a.dev/akshhq.html)**
 
-### 🌿 Himroots Wellness — High-Himalayan Sea Buckthorn Platform
+### 🌿 Himroots Wellness — High-Himalayan Sea Buckthorn Platform *(Under Development)*
+[![Preview](https://img.shields.io/badge/Live_Preview-him--roots.vercel.app-000000?style=flat-square&logo=vercel&logoColor=white)](https://him-roots.vercel.app/)
 [![Instagram](https://img.shields.io/badge/Instagram-@himroots.wellness-E4405F?style=flat-square&logo=instagram&logoColor=white)](https://www.instagram.com/himroots.wellness/)
+![Status](https://img.shields.io/badge/Status-Under_Development-orange?style=flat-square)
 ![React](https://img.shields.io/badge/React_19-20232A?style=flat-square&logo=react&logoColor=61DAFB)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite_8-646CFF?style=flat-square&logo=vite&logoColor=FFD62E)
@@ -141,11 +143,11 @@ A **premium travel agency site evolving into a full travel management platform**
 
 ---
 
-### ☀️ Maurice Solar — Clean-Tech Energy Solutions *(In Progress)*
+### ☀️ Maurice Solar — Clean-Tech Energy Solutions
+[![Live](https://img.shields.io/badge/Live-aksh.is--a.dev%2FMaurice--solar-FFB400?style=flat-square&logo=google-chrome&logoColor=black)](https://aksh.is-a.dev/Maurice-solar/)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Status](https://img.shields.io/badge/Status-In_Development-orange?style=flat-square)
 
 Multi-page corporate & clean-tech engineering web portal for a Himachal Pradesh-based solar energy company (2,000+ rooftop solar water heater installations, 355+ on-grid solar systems, national vendor under PM Surya Ghar Muft Bijli Yojana).
 
@@ -155,6 +157,8 @@ Multi-page corporate & clean-tech engineering web portal for a Himachal Pradesh-
 - 📱 **Clean-Tech UX:** Tabbed product filtering, responsive image lightbox, animated viewport metrics, and accessibility-first reduced-motion support
 
 ---
+
+## 🛠️ Personal & Open-Source Projects
 
 ### 🛡️ ResQNet — Emergency Response System
 [![Source](https://img.shields.io/badge/GitHub-resqnet-181717?style=flat-square&logo=github)](https://github.com/akshhq/resqnet)

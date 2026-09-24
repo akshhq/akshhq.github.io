@@ -683,14 +683,14 @@
 
   <div class="studio-stats-grid">
     <div class="stat-box">
-      <div class="stat-num">09</div>
+      <div class="stat-num">07</div>
       <div class="stat-label">Total Projects</div>
       <div class="stat-sub">Client, D2C & Engineering</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">04</div>
-      <div class="stat-label">E-Commerce & B2B</div>
-      <div class="stat-sub">Production Portals Shipped</div>
+      <div class="stat-label">Live Deployments</div>
+      <div class="stat-sub">In Production & Shipped</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">100%</div>
@@ -714,19 +714,19 @@
 
   <div class="filter-bar">
     <button class="filter-btn active" data-filter="all">
-      All Works <span class="filter-count">9</span>
+      All Works <span class="filter-count">7</span>
     </button>
     <button class="filter-btn" data-filter="ecommerce">
       E-Commerce & D2C <span class="filter-count">2</span>
     </button>
     <button class="filter-btn" data-filter="b2b">
-      Client & B2B Portals <span class="filter-count">4</span>
+      Client & B2B Portals <span class="filter-count">6</span>
     </button>
     <button class="filter-btn" data-filter="fullstack">
       Full-Stack & Systems <span class="filter-count">4</span>
     </button>
-    <button class="filter-btn" data-filter="opensource">
-      Open-Source & Campus <span class="filter-count">3</span>
+    <button class="filter-btn" data-filter="campus">
+      Campus & Web <span class="filter-count">1</span>
     </button>
   </div>
 </section>
@@ -738,7 +738,7 @@
   <article class="glass-card showcase-card" id="himroots" data-categories="ecommerce fullstack b2b">
     <div class="card-header-meta">
       <span class="card-badge">E-Commerce · Botanical D2C</span>
-      <span class="card-status"><span class="status-indicator"></span> Client Platform</span>
+      <span class="card-status"><span class="status-indicator dev"></span> Under Development</span>
     </div>
     <h3 class="card-title">Himroots Wellness — High-Himalayan Sea Buckthorn Platform</h3>
     <p class="card-summary">
@@ -762,10 +762,13 @@
       <span class="stack-chip">Razorpay</span>
     </div>
     <div class="card-actions">
-      <a href="https://www.instagram.com/himroots.wellness/" target="_blank" rel="noopener noreferrer" class="action-link">
+      <a href="https://him-roots.vercel.app/" target="_blank" rel="noopener noreferrer" class="action-link">
+        Live Preview ↗
+      </a>
+      <a href="https://www.instagram.com/himroots.wellness/" target="_blank" rel="noopener noreferrer" class="action-link action-secondary">
         Instagram @himroots.wellness ↗
       </a>
-      <span class="stack-chip" style="border:none; color:var(--accent);">Production Platform</span>
+      <span class="stack-chip" style="border:none; color:#f59e0b;">🚧 Under Development</span>
     </div>
   </article>
 
@@ -865,10 +868,10 @@
   </article>
 
   <!-- PROJECT 5: MAURICE SOLAR -->
-  <article class="glass-card showcase-card" id="mauricesolar" data-categories="b2b">
+  <article class="glass-card showcase-card" id="mauricesolar" data-categories="b2b fullstack">
     <div class="card-header-meta">
       <span class="card-badge">Clean-Tech · Engineering Portal</span>
-      <span class="card-status"><span class="status-indicator dev"></span> In Active Development</span>
+      <span class="card-status"><span class="status-indicator"></span> Live in Production</span>
     </div>
     <h3 class="card-title">Maurice Solar — Clean-Tech Energy Solutions</h3>
     <p class="card-summary">
@@ -888,7 +891,10 @@
       <span class="stack-chip">Clean-Tech UX</span>
     </div>
     <div class="card-actions">
-      <span class="stack-chip" style="border:none; color:#f59e0b;">🚧 Under Active Client Build</span>
+      <a href="https://aksh.is-a.dev/Maurice-solar/" target="_blank" rel="noopener noreferrer" class="action-link">
+        Live Site ↗
+      </a>
+      <span class="stack-chip" style="border:none; color:var(--accent);">Clean-Tech Engineering</span>
     </div>
   </article>
 
@@ -920,68 +926,8 @@
     </div>
   </article>
 
-  <!-- PROJECT 7: RESQNET -->
-  <article class="glass-card showcase-card" id="resqnet" data-categories="fullstack opensource">
-    <div class="card-header-meta">
-      <span class="card-badge">Open-Source · Emergency Systems</span>
-      <span class="card-status"><span class="status-indicator oss"></span> Open Source</span>
-    </div>
-    <h3 class="card-title">ResQNet — Emergency Response System</h3>
-    <p class="card-summary">
-      Real-time emergency dispatch and response coordination system providing high-frequency GPS telemetry, automated risk escalation, and live dispatcher command mapping.
-    </p>
-    <ul class="card-dossier">
-      <li><b>FastAPI & WebSockets Backend:</b> High-throughput asynchronous backend streaming bi-directional responder coordinates with minimal network overhead.</li>
-      <li><b>Live GIS Command Center:</b> Interactive Leaflet.js dashboard displaying active responders, incident geo-markers, and safe perimeter zones.</li>
-      <li><b>3-Tier Risk Escalation Engine:</b> Automated risk classification evaluating incident duration, severity indices, and automated 30s/90s response timeouts.</li>
-      <li><b>Resilience Architecture:</b> Designed for mission-critical scenarios with offline message queueing and rapid failover protocols.</li>
-    </ul>
-    <div class="card-stack">
-      <span class="stack-chip">FastAPI</span>
-      <span class="stack-chip">Python</span>
-      <span class="stack-chip">WebSockets</span>
-      <span class="stack-chip">Leaflet.js</span>
-      <span class="stack-chip">GIS Telemetry</span>
-    </div>
-    <div class="card-actions">
-      <a href="https://github.com/akshhq/resqnet" target="_blank" rel="noopener noreferrer" class="action-link">
-        GitHub Repository ↗
-      </a>
-    </div>
-  </article>
-
-  <!-- PROJECT 8: ACTIVITYPROFILER-DESKTOP -->
-  <article class="glass-card showcase-card" id="activityprofiler" data-categories="fullstack opensource">
-    <div class="card-header-meta">
-      <span class="card-badge">Desktop App · Privacy Analytics</span>
-      <span class="card-status"><span class="status-indicator oss"></span> Open Source</span>
-    </div>
-    <h3 class="card-title">ActivityProfiler-Desktop — Windows App Tracker</h3>
-    <p class="card-summary">
-      Privacy-first, zero-cloud Windows desktop application that autonomously logs application usage, window focus states, and browser dwell times with granular analytics.
-    </p>
-    <ul class="card-dossier">
-      <li><b>100% Local & Privacy-Preserving:</b> All metrics stored locally in an encrypted SQLite database without external telemetries or third-party cloud syncs.</li>
-      <li><b>Data Analytics Engine:</b> Matplotlib-driven data charts rendering hourly, daily, and weekly productivity breakdowns and categorized usage heatmaps.</li>
-      <li><b>Desktop Architecture:</b> Native Tkinter GUI with custom dark-themed controls, background daemon polling, and one-click executable distribution.</li>
-      <li><b>Reporting Tools:</b> Automated CSV export functionality enabling data scientists and researchers to run bespoke local workload analyses.</li>
-    </ul>
-    <div class="card-stack">
-      <span class="stack-chip">Python</span>
-      <span class="stack-chip">Tkinter</span>
-      <span class="stack-chip">SQLite</span>
-      <span class="stack-chip">Matplotlib</span>
-      <span class="stack-chip">Win32 API</span>
-    </div>
-    <div class="card-actions">
-      <a href="https://github.com/akshhq/ActivityProfiler-Desktop" target="_blank" rel="noopener noreferrer" class="action-link">
-        GitHub Repository ↗
-      </a>
-    </div>
-  </article>
-
-  <!-- PROJECT 9: TRYST / COLLEGE FEST HUB -->
-  <article class="glass-card showcase-card" id="tryst" data-categories="opensource">
+  <!-- PROJECT 7: TRYST / COLLEGE FEST HUB -->
+  <article class="glass-card showcase-card" id="tryst" data-categories="campus">
     <div class="card-header-meta">
       <span class="card-badge">Campus Hub · Web Experience</span>
       <span class="card-status"><span class="status-indicator"></span> Shipped & Live</span>
